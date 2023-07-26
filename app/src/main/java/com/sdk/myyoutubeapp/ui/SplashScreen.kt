@@ -37,7 +37,7 @@ fun SplashScreen(
     }
     val animation by animateFloatAsState(
         targetValue = if (isLaunched) 1f else 0f,
-        animationSpec = tween(3000)
+        animationSpec = tween(3000), label = "test_lable"
     )
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Image(

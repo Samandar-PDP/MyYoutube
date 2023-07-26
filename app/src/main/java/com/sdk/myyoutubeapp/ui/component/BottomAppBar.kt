@@ -6,6 +6,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -37,7 +38,7 @@ fun BottomAppBar(
                         }
                     },
                     label = {
-                        Text(text = screen.label ?: "")
+                        Text(text = screen.label ?: "", maxLines = 1, overflow = TextOverflow.Ellipsis)
                     },
                     icon = {
                         Icon(imageVector = screen.icon, contentDescription = "icon")

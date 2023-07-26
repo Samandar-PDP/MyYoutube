@@ -12,6 +12,7 @@ import androidx.navigation.navigation
 import com.sdk.myyoutubeapp.constants.Graph
 import com.sdk.myyoutubeapp.ui.MainScreen
 import com.sdk.myyoutubeapp.ui.SplashScreen
+import com.sdk.myyoutubeapp.ui.home.HomeScree
 
 @Composable
 fun RootNavigation(navHostController: NavHostController) {
@@ -26,6 +27,7 @@ fun RootNavigation(navHostController: NavHostController) {
         }
     }
 }
+
 fun NavGraphBuilder.splashGraph(navHostController: NavHostController) {
     navigation(
         route = Graph.SPLASH,
@@ -46,7 +48,7 @@ fun MainGraph(navHostController: NavHostController, modifier: Modifier) {
         modifier = modifier
     ) {
         composable(route = BottomBar.Home.route) {
-            Text(text = "Home")
+            HomeScree(navHostController = navHostController)
         }
         composable(route = BottomBar.Shorts.route) {
             Text(text = "Shorts")
