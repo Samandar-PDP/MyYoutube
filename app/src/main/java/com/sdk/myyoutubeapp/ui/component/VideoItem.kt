@@ -22,13 +22,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.sdk.domain.model.Video
 import com.sdk.myyoutubeapp.R
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun VideoItem(
+    video: Video,
     onClick: () -> Unit,
 ) {
     Card(
@@ -36,12 +41,13 @@ fun VideoItem(
             .fillMaxWidth()
             .height(280.dp),
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.img_1),
-            contentDescription = "video_image",
-            modifier = Modifier
-                .fillMaxSize()
-                .weight(3f),
+        AsyncImage(
+            model = ImageRequest.Builder(LocalContext.current)
+                .data(video.image)
+                .crossfade(1000)
+                .build(),
+            contentDescription = "networkImage",
+            modifier = Modifier.weight(3f),
             contentScale = ContentScale.Crop
         )
         ListItem(
@@ -55,19 +61,22 @@ fun VideoItem(
                         .clip(CircleShape)
                         .border(0.dp, Color.Black, CircleShape)
                 ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.img_1),
-                        contentDescription = "img",
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier.fillMaxSize()
+                    AsyncImage(
+                        model = ImageRequest.Builder(LocalContext.current)
+                            .data(video.user.url)
+                            .crossfade(1000)
+                            .build(),
+                        contentDescription = "userImage",
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Crop
                     )
                 }
             },
             headlineText = {
-                Text(text = "Video Title")
+                Text(text = video.user.name)
             },
             supportingText = {
-                Text(text = "34 234 234 views, Jul 1 2023")
+                Text(text = video.duration.toString())
             },
             trailingContent = {
                 IconButton(onClick = { /*TODO*/ }) {
