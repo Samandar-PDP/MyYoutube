@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -31,22 +33,23 @@ android {
 }
 
 dependencies {
-
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
+    implementation AppDependencies.KotlinCore
+    implementation AppDependencies.AppCompat
+    //Dagger - Hilt
+    implementation AppDependencies.Hilt
     implementation project(path: ':domain')
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    kapt AppDependencies.KaptHilt
 
-    implementation "com.squareup.retrofit2:retrofit:2.9.0"
-    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
-    implementation "com.squareup.okhttp3:okhttp:5.0.0-alpha.2"
-    implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2"
+    // Retrofit
+    implementation AppDependencies.Retrofit
+    implementation AppDependencies.RetroGson
+    implementation AppDependencies.Okhttp
+    implementation AppDependencies.Interceptor
 
-    implementation "com.google.dagger:hilt-android:2.40.5"
-    implementation "com.google.dagger:hilt-android-compiler:2.40.5"
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
-    implementation "androidx.hilt:hilt-compiler:1.0.0"
+    // Datastore
+    implementation AppDependencies.DataStore
+
+    // Paging
+    implementation AppDependencies.Paging
+    implementation AppDependencies.PagingCompose
 }

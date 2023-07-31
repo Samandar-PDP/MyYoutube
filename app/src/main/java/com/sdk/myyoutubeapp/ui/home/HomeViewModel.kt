@@ -2,6 +2,7 @@ package com.sdk.myyoutubeapp.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.sdk.domain.use_case.GetPopularVideosUseCase
 import com.sdk.domain.use_case.GetVideosUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,14 +16,15 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getVideosUseCase: GetVideosUseCase
+    private val getVideosUseCase: GetVideosUseCase,
+    private val getPopularVideosUseCase: GetPopularVideosUseCase
 ) : ViewModel() {
     private val _state = MutableStateFlow(HomeState())
     val state get() = _state.asStateFlow()
 
     init {
         viewModelScope.launch {
-            getVideosUseCase("popular")
+            getPopularVideosUseCase(Unit)
                 .onStart {
                     _state.update {
                         it.copy(isLoading = true)

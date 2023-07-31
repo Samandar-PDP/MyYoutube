@@ -11,4 +11,9 @@ interface ApiService {
         @Query("query") query: String = "popular",
         @Query("per_page") page: Int = 1
     ): Response<VideoResponseDTO>
+
+    @GET("/videos/popular")
+    suspend fun getPopularVideos(
+        @Query("per_page") page: Int = 1
+    ): Response<VideoResponseDTO>
 }

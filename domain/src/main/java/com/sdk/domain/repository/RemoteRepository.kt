@@ -5,4 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface RemoteRepository {
     suspend fun getVideos(query: String): Flow<List<Video>>
+    suspend fun getPopularVideos(): Flow<List<Video>>
 }
