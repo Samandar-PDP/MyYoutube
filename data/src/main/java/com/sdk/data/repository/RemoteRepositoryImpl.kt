@@ -15,7 +15,7 @@ class RemoteRepositoryImpl @Inject constructor(
     override suspend fun getPopularVideos(): Flow<List<Video>> = flow {
         val response = apiService.getPopularVideos()
         response.body()?.let {
-            Log.d("@@@", "getPopularVideos: ${response.body()?.videos}")
+            println("@@@imp${response.body()?.videos?.size}")
             emit(response.body()?.videos?.map { it.toVideo() } ?: emptyList())
         }
     }

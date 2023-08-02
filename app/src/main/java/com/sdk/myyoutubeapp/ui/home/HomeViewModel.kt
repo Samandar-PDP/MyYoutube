@@ -36,6 +36,7 @@ class HomeViewModel @Inject constructor(
                     }
                 }
                 .collectLatest { r ->
+                    println("@@@vm${r.size}")
                     _state.update {
                         it.copy(isLoading = false, success = r)
                     }

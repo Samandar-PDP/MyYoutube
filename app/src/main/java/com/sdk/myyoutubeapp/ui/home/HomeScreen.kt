@@ -40,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.sdk.myyoutubeapp.R
+import com.sdk.myyoutubeapp.constants.Graph
 import com.sdk.myyoutubeapp.ui.component.Loading
 import com.sdk.myyoutubeapp.ui.component.TopSelection
 import com.sdk.myyoutubeapp.ui.component.VideoItem
@@ -119,7 +120,7 @@ fun HomeScree(
                         VideoItem(
                             video = it,
                             onClick = {
-
+                                navHostController.navigate(Graph.FULL_VID)
                             }
                         )
                         Divider(

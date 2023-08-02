@@ -2,6 +2,7 @@ package com.sdk.myyoutubeapp.ui.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -47,7 +48,9 @@ fun VideoItem(
                 .crossfade(1000)
                 .build(),
             contentDescription = "networkImage",
-            modifier = Modifier.weight(3f),
+            modifier = Modifier.weight(3f) .clickable {
+                onClick()
+            },
             contentScale = ContentScale.Crop
         )
         ListItem(
@@ -67,7 +70,8 @@ fun VideoItem(
                             .crossfade(1000)
                             .build(),
                         contentDescription = "userImage",
-                        modifier = Modifier.fillMaxSize(),
+                        modifier = Modifier
+                            .fillMaxSize(),
                         contentScale = ContentScale.Crop
                     )
                 }

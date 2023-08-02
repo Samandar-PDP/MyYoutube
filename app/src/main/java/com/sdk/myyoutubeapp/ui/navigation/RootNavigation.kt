@@ -12,6 +12,7 @@ import androidx.navigation.navigation
 import com.sdk.myyoutubeapp.constants.Graph
 import com.sdk.myyoutubeapp.ui.MainScreen
 import com.sdk.myyoutubeapp.ui.SplashScreen
+import com.sdk.myyoutubeapp.ui.detail.DetailScreen
 import com.sdk.myyoutubeapp.ui.home.HomeScree
 
 @Composable
@@ -61,6 +62,18 @@ fun MainGraph(navHostController: NavHostController, modifier: Modifier) {
         }
         composable(route = BottomBar.Library.route) {
             Text(text = "Library")
+        }
+        detailNavGraph(navHostController)
+    }
+}
+
+fun NavGraphBuilder.detailNavGraph(navHostController: NavHostController) {
+    navigation(
+        route = Graph.FULL_VID,
+        startDestination = "detail"
+    ) {
+        composable(route = "detail") {
+            DetailScreen(navHostController = navHostController)
         }
     }
 }
